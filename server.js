@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 4000
 
 app.get('/', (req, res) => {
     res.redirect('/ping');
@@ -12,5 +12,5 @@ app.get('/ping', (request,response) => {
 })
 
 app.listen(port, () => {
-    console.log("This is from port 3000")
+    console.log("This is from port 4000")
 })
