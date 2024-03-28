@@ -3,6 +3,8 @@ const app = express()
 const port = 4000
 const mongoose = require('mongoose')
 require("dotenv").config()
+const cors = require('cors')
+app.use(cors())
 
 const URI = process.env.MONGODB_URI
 
@@ -15,7 +17,7 @@ mongoose.connect(URI)
     })
     .catch((error) => {
         console.log(error)
-    })
+})
 
 app.get('/ping', (request,response) => {
     
