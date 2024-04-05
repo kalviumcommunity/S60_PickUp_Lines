@@ -10,7 +10,6 @@ app.post("/add", (request, response) => {
     response.status(200).send("Added");
 });
 
-
 app.put("/update", (req, res) => {
   res.send("Updated successfully");
 });

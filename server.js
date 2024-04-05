@@ -39,21 +39,6 @@ app.get('/ping', (request,response) => {
 });
 
 app.use("/",route)
-// app.get("/Lines", (request, response) => {
-//     response.status(200).send("Route is working successfully");
-// });
-
-// app.post("/add", (request, response) => {
-//     response.status(201).send(request.body);
-// });
-
-// app.put("/update", (req, res) => {
-//     res.send("Updated successfully");
-// });
-
-// app.delete("/delete", (req, res) => {
-//     res.send("Deleted successfully");
-// });
 
 app.listen(port, () => {
     console.log("This is from port 4000")
