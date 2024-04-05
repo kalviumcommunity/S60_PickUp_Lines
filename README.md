@@ -14,3 +14,7 @@ The focus is on embracing the sheer ridiculousness of pickup lines and turning t
 - User Friendly Interface
 - Discover by category
 - User Authentication
+
+### Deploy Links:
+
+Front-End Deploy Link : https://s60-pickup-lines.netlify.app/
