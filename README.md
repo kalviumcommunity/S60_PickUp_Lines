@@ -15,6 +15,6 @@ The focus is on embracing the sheer ridiculousness of pickup lines and turning t
 - Discover by category
 - User Authentication
 
-### Deploy Links:
+## Deploy Links:
 
 Front-End Deploy Link : https://s60-pickup-lines.netlify.app/
