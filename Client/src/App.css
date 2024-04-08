@@ -1,0 +1,22 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+}
+
+.container {
+  margin: 30vh 50vh;
+}
+
+.data-container {
+  margin: 2vh auto;
+  padding: 1vh;
+  background-color: #a16204;
+}
+
+.category {
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
