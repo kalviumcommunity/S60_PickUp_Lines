@@ -26,7 +26,8 @@ mongoose.connect(URI)
     })
     .catch((error) => {
         console.log(error)
-})
+    }
+)
 
 app.get('/ping', (request,response) => {
     
