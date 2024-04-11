@@ -1,9 +1,16 @@
 const express = require('express')
 const app = express()
 app.use(express.json())
+const data = require('./userSchema')
 
 app.get("/lines", (request, response) => {
-    response.status(200).send("Route is working succesfully")
+    data.find()
+    .then((data)=>{
+      response.send(data)
+    })
+    .catch((err)=>{
+      response.send(err)
+    })
 });
 
 app.post("/add", (request, response) => {

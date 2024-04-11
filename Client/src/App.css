@@ -6,10 +6,11 @@ body {
 }
 
 .container {
-  margin: 30vh 50vh;
+  margin-top: 10vh;
 }
 
 .data-container {
+  width: 50%;
   margin: 2vh auto;
   padding: 1vh;
   background-color: #a16204;
@@ -18,5 +19,5 @@ body {
 .category {
   text-align: center;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
