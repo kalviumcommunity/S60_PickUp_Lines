@@ -6,14 +6,11 @@ const data = require('./userSchema')
 require("dotenv").config()
 const app = express()
 
-
 const cors = require('cors')
 app.use(cors())
 app.use(express.json())
 
-
 const port = 4000
-
 
 const URI = process.env.MONGODB_URI
 
@@ -30,7 +27,6 @@ mongoose.connect(URI)
 )
 
 app.get('/ping', (request,response) => {
-    
     const isConnected = mongoose.connection.readyState === 1;
     
     // Send response with database connection status

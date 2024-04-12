@@ -13,8 +13,14 @@ app.get("/lines", (request, response) => {
     })
 });
 
-app.post("/add", (request, response) => {
-    response.status(200).send("Added");
+app.post("/addPickUpLine", (request, response) => {
+  data.create(request.body)
+  .then((res)=>(
+    response.status(201).send(res)
+  ))
+  .catch((err)=>{
+    response.status(400).send(err)
+  })
 });
 
 app.put("/update", (req, res) => {
