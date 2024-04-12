@@ -4,7 +4,6 @@ const PickupLines = new mongoose.Schema({
     "name" : String,
     "pickupline" : String,
     "category": String,
-    "likes":Number
 })
 
 const data = mongoose.model('PickupLine',PickupLines)
