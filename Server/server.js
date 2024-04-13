@@ -24,11 +24,11 @@ mongoose.connect(URI)
     .catch((error) => {
         console.log(error)
     }
-)
+    )
 
-app.get('/ping', (request,response) => {
+app.get('/ping', (request, response) => {
     const isConnected = mongoose.connection.readyState === 1;
-    
+
     // Send response with database connection status
     response.json({
         database: isConnected ? 'connected' : 'disconnected',
@@ -36,7 +36,7 @@ app.get('/ping', (request,response) => {
 
 });
 
-app.use("/",route)
+app.use("/", route)
 
 app.listen(port, () => {
     console.log("This is from port 4000")
