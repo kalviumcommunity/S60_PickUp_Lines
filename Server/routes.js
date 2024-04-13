@@ -3,33 +3,53 @@ const app = express()
 app.use(express.json())
 const data = require('./userSchema')
 
-app.get("/lines", (request, response) => {
+app.get("/lines", (req, res) => {
     data.find()
     .then((data)=>{
-      response.send(data)
+      res.send(data)
     })
     .catch((err)=>{
-      response.send(err)
+      res.send(err)
     })
 });
 
-app.post("/addPickUpLine", (request, response) => {
-  data.create(request.body)
-  .then((res)=>(
-    response.status(201).send(res)
+app.post("/addPickUpLine", (req, res) => {
+  data.create(req.body)
+  .then((result)=>(
+    res.status(201).send(result)
   ))
   .catch((err)=>{
-    response.status(400).send(err)
+    res.status(400).send(err)
   })
 });
 
-app.put("/update", (req, res) => {
-  res.send("Updated successfully");
+app.get("/updateLine/:id",(req,res)=>{
+  const id = req.params.id
+  data.findById(id)
+  .then((result)=>{
+    res.send(result)
+  })
+})
+
+app.put("/updateLine/:id", (req, res) => {
+  const id = req.params.id
+  console.log(req.body)
+  data.findByIdAndUpdate(id,req.body)
+  .then((result)=>{
+    res.send(result)
+  })
 });
 
 
-app.delete("/delete", (req, res) => {
-  res.send("Deleted succesfully");
+app.delete("/deleteData/:id", (req, res) => {
+  const id = req.params.id
+  data.findByIdAndDelete(id)
+  .then((result)=>{
+    res.send("Deleted succesfully");
+  })
+  .catch((err)=>{
+    console.log(err)
+  })
 });
 
 module.exports = app;
