@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 app.use(express.json())
-const data = require('./userSchema')
+const { data, loginData } = require('./Schema')
 const Joi = require('joi')
 
 app.get("/lines", (req, res) => {
@@ -70,5 +70,27 @@ app.delete("/deleteData/:id", (req, res) => {
       console.log(err)
     })
 });
+
+const loginValidate = Joi.object({
+  name: Joi.string().required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().required()
+})
+
+app.post('/login', (req, res) => {
+  const { error } = loginValidate.validate(req.body)
+  if (error) {
+    res.status(400).send(error)
+  } else {
+    console.log(req.body);
+    loginData.create(req.body)
+      .then((result) => (
+        res.status(201).send(result)
+      ))
+      .catch((err) => {
+        res.status(400).json(err)
+      })
+  }
+})
 
 module.exports = app;
