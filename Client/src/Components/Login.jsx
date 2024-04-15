@@ -2,17 +2,23 @@ import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-function AddLines() {
+function Login(props) {
+
     const [name, setName] = useState('')
-    const [pickupline, setLine] = useState('')
-    const [category, setcategory] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     const navigate = useNavigate()
+    const { login, setLogin } = props
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:4000/addPickUpLine', { name, pickupline, category })
+        console.log(e)
+        axios.post('http://localhost:4000/login', { name, email, password })
             .then((res) => {
                 console.log(res)
+                document.cookie = `name=${name}; expires= Thu, 30 May 2999 12:00:00 UTC`;
+                document.cookie = `password=${password}; expires=Thu, 30 May 2999 12:00:00 UTC`;
+                setLogin(true)
                 navigate('/')
             })
             .catch((err) => {
@@ -33,30 +39,31 @@ function AddLines() {
                         setName(e.target.value)
                     }}
                 />
-                <label htmlFor="PickupLine">PickUp Line:</label>
+                <label htmlFor="Email">Email:</label>
                 <input
-                    type="text"
+                    type="email"
                     required
-                    value={pickupline}
-                    placeholder='Add PickUp Line'
+                    value={email}
+                    placeholder='Add your email'
                     onChange={(e) => {
-                        setLine(e.target.value)
+                        setEmail(e.target.value)
                     }}
                 />
-                <label htmlFor="Category:">Category:</label>
+                <label htmlFor="Password">Password:</label>
                 <input
-                    type="text"
-                    placeholder='Category'
+                    type="password"
+                    placeholder='Set Password'
                     required
-                    value={category}
+                    value={password}
                     onChange={(e) => {
-                        setcategory(e.target.value)
+                        setPassword(e.target.value)
                     }}
                 />
-                <input type="submit" value="Create" />
+                <input type="submit" value="Login" />
             </form>
         </div>
+
     )
 }
 
-export default AddLines
+export default Login
