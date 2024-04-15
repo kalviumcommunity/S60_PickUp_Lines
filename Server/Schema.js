@@ -1,13 +1,19 @@
 const mongoose = require('mongoose')
 
 const PickupLines = new mongoose.Schema({
-    "name" : String,
-    "pickupline" : String,
-    "category": String,
+    name: String,
+    pickupline: String,
+    category: String,
 })
 
-const data = mongoose.model('PickupLine',PickupLines)
+const logindata = new mongoose.Schema({
+    name: String,
+    email: String,
+    password: String
+})
 
+const data = mongoose.model('PickupLine', PickupLines)
+const loginData = mongoose.model('loginData', logindata)
 // data.create({
 //     "name": "",
 //     "pickupline": "",
@@ -21,4 +27,4 @@ const data = mongoose.model('PickupLine',PickupLines)
 //     console.error('Error creating user:', error);
 // });
 
-module.exports = data
+module.exports = { data, loginData }

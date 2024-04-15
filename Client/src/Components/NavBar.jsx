@@ -1,7 +1,18 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 
-function NavBar() {
+function NavBar(props) {
+    const { login, setLogin } = props
+
+    const deleteCookie = (name) => {
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+    }
+
+    const handleClick = () => {
+        deleteCookie('name');
+        deleteCookie('password')
+        setLogin(false)
+        console.log("deleted")
+    }
     return (
         <div>
             <nav className='navbar' >
@@ -19,6 +30,20 @@ function NavBar() {
                             <button>About</button>
                         </Link>
                     </div>
+                    {login ?
+                        (
+                            <div>
+                                <button onClick={handleClick}>Logout</button>
+                            </div>
+                        ) :
+                        (
+                            <div>
+                                <Link to='/login'>
+                                    <button>Login</button>
+                                </Link>
+                            </div>
+                        )
+                    }
                 </div>
             </nav>
         </div>
