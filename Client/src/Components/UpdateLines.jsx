@@ -38,16 +38,6 @@ function UpdateLines() {
     return (
         <div className='form-container'>
             <form action="" onSubmit={handleSubmit}>
-                <label htmlFor="PickupLine">User Name:</label>
-                <input
-                    type="text"
-                    required
-                    value={name}
-                    placeholder='Add Your name'
-                    onChange={(e) => {
-                        setName(e.target.value)
-                    }}
-                />
                 <label htmlFor="PickupLine">PickUp Line:</label>
                 <input
                     type="text"

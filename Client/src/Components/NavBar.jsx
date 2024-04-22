@@ -8,11 +8,13 @@ function NavBar(props) {
     }
 
     const handleClick = () => {
-        deleteCookie('name');
+        deleteCookie('email');
         deleteCookie('password')
+        deleteCookie('token')
         setLogin(false)
         console.log("deleted")
     }
+
     return (
         <div>
             <nav className='navbar' >

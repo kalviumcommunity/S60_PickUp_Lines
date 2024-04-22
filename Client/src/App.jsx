@@ -16,7 +16,7 @@ function App() {
     <div>
       <NavBar login={login} setLogin={setLogin} />
       <Routes>
-        <Route path="/" element={<PickUpLines />} />
+        <Route path="/" element={<PickUpLines login={login} />} />
         <Route path='/AddPickUpLine' element={<AddLines />} />
         <Route path='/updateLine/:id' element={<UpdateLines />} />
         <Route path='login' element={<Login login={login} setLogin={setLogin} />} />

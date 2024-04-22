@@ -6,14 +6,14 @@ const PickupLines = new mongoose.Schema({
     category: String,
 })
 
-const logindata = new mongoose.Schema({
+const signUpData = new mongoose.Schema({
     name: String,
     email: String,
     password: String
 })
 
 const data = mongoose.model('PickupLine', PickupLines)
-const loginData = mongoose.model('loginData', logindata)
+const SignUpData = mongoose.model('SignUpData', signUpData)
 // data.create({
 //     "name": "",
 //     "pickupline": "",
@@ -27,4 +27,4 @@ const loginData = mongoose.model('loginData', logindata)
 //     console.error('Error creating user:', error);
 // });
 
-module.exports = { data, loginData }
+module.exports = { data, SignUpData }

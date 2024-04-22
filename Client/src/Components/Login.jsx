@@ -15,54 +15,17 @@ function Login(props) {
         axios.post('http://localhost:4000/login', { email, password })
             .then((res) => {
                 console.log(res)
-                document.cookie = `name=${name}; expires= Thu, 30 May 2999 12:00:00 UTC`;
+                document.cookie = `email=${email}; expires= Thu, 30 May 2999 12:00:00 UTC`;
                 document.cookie = `password=${password}; expires=Thu, 30 May 2999 12:00:00 UTC`;
-                setLogin(true)
+                document.cookie = `token=${res.data.token}; expires=Thu, 30 May 2999 12:00:00 UTC`
+                setLogin(res.data.shouldLogin)
+                alert(res.data.Message)
                 navigate('/')
             })
             .catch((err) => {
                 console.log(err)
             })
     }
-
-    // return (
-    //     <div className='form-container'>
-    //         <form action="" onSubmit={handleSubmit}>
-    //             <label htmlFor="PickupLine">User Name:</label>
-    //             <input
-    //                 type="text"
-    //                 required
-    //                 value={name}
-    //                 placeholder='Add Your name'
-    //                 onChange={(e) => {
-    //                     setName(e.target.value)
-    //                 }}
-    //             />
-    //             <label htmlFor="Email">Email:</label>
-    //             <input
-    //                 type="email"
-    //                 required
-    //                 value={email}
-    //                 placeholder='Add your email'
-    //                 onChange={(e) => {
-    //                     setEmail(e.target.value)
-    //                 }}
-    //             />
-    //             <label htmlFor="Password">Password:</label>
-    //             <input
-    //                 type="password"
-    //                 placeholder='Set Password'
-    //                 required
-    //                 value={password}
-    //                 onChange={(e) => {
-    //                     setPassword(e.target.value)
-    //                 }}
-    //             />
-    //             <input type="submit" value="Login" />
-    //         </form>
-    //     </div>
-
-    // )
 
     return (
         <div className='form-container' >
@@ -85,15 +48,14 @@ function Login(props) {
                     }}
                     value={password}
                 />
-                {/* {error && (
-                    <p>{error}</p>
-                )} */}
+
                 <span> Don't have an account?
                     <Link to={'/signUp'}>
                         Signup here!
                     </Link>
                 </span>
                 <input type="submit" />
+
             </form>
         </div>
     )
