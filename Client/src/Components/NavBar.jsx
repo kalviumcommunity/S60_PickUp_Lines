@@ -47,7 +47,6 @@ function NavBar(props) {
                 </div>
             </nav>
         </div>
-
     )
 }
 
