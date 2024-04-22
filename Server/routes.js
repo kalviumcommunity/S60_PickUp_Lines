@@ -18,7 +18,6 @@ app.get("/lines", (req, res) => {
 });
 
 const dataValidate = Joi.object({
-  name: Joi.string().required(),
   pickupline: Joi.string().required(),
   category: Joi.string().required()
 })
@@ -29,7 +28,7 @@ app.post("/addPickUpLine", (req, res) => {
     console.log(error)
     res.send(error)
   } else {
-    data.create(req.body)
+    data.create({ pickupline: req.body.pickupline, category: req.body.category })
       .then((result) => (
         res.status(201).send(result)
       ))
@@ -39,21 +38,30 @@ app.post("/addPickUpLine", (req, res) => {
   }
 });
 
-app.get("/updateLine/:id", (req, res) => {
+app.get("/update/:id", (req, res) => {
   const id = req.params.id
   data.findById(id)
     .then((result) => {
       res.send(result)
     })
+    .catch((err) => {
+      res.send(err)
+    })
 })
 
-app.put("/updateLine/:id", (req, res) => {
+const updateValidate = Joi.object({
+  pickupline: Joi.string().required(),
+  category: Joi.string().required()
+})
+
+
+app.put("/update/:id", (req, res) => {
   const id = req.params.id
-  const { error } = dataValidate.validate(req.body)
+  const { error } = updateValidate.validate(req.body)
   if (error) {
     res.send(error)
   } else {
-    data.findByIdAndUpdate(id, req.body)
+    data.findByIdAndUpdate(id, { pickupline: req.body.pickupline, category: req.body.category })
       .then((result) => {
         res.send(result)
       })

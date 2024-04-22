@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom'
 
 function Login(props) {
-
+    // const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
@@ -15,12 +15,17 @@ function Login(props) {
         axios.post('http://localhost:4000/login', { email, password })
             .then((res) => {
                 console.log(res)
-                document.cookie = `email=${email}; expires= Thu, 30 May 2999 12:00:00 UTC`;
-                document.cookie = `password=${password}; expires=Thu, 30 May 2999 12:00:00 UTC`;
-                document.cookie = `token=${res.data.token}; expires=Thu, 30 May 2999 12:00:00 UTC`
-                setLogin(res.data.shouldLogin)
-                alert(res.data.Message)
-                navigate('/')
+                if (res.data.shouldLogin) {
+                    document.cookie = `email=${email}; expires= Thu, 30 May 2999 12:00:00 UTC`;
+                    document.cookie = `password=${password}; expires=Thu, 30 May 2999 12:00:00 UTC`;
+                    document.cookie = `token=${res.data.token}; expires=Thu, 30 May 2999 12:00:00 UTC`
+                    alert(res.data.Message)
+                    setLogin(res.data.shouldLogin)
+                    navigate('/')
+                }
+                else {
+                    alert(res.data.Message)
+                }
             })
             .catch((err) => {
                 console.log(err)

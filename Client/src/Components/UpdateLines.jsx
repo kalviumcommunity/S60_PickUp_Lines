@@ -4,17 +4,15 @@ import axios from 'axios'
 import { useNavigate, useParams } from 'react-router-dom'
 
 function UpdateLines() {
-    const [name, setName] = useState('')
     const [pickupline, setLine] = useState('')
     const [category, setcategory] = useState('')
     const navigate = useNavigate()
     const { id } = useParams();
 
     useEffect(() => {
-        axios.get('http://localhost:4000/updateLine/' + id)
+        axios.get('http://localhost:4000/update/' + id)
             .then((res) => {
                 console.log(res)
-                setName(res.data.name)
                 setLine(res.data.pickupline)
                 setcategory(res.data.category)
             })
@@ -25,7 +23,7 @@ function UpdateLines() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.put('http://localhost:4000/updateLine/' + id, { name, pickupline, category })
+        axios.put('http://localhost:4000/update/' + id, { pickupline, category })
             .then((res) => {
                 console.log(res)
                 navigate('/')
@@ -58,7 +56,7 @@ function UpdateLines() {
                         setcategory(e.target.value)
                     }}
                 />
-                <input type="submit" value="Create" />
+                <input type="submit" value="Update" />
             </form>
         </div>
     )
