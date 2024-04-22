@@ -11,6 +11,7 @@ function NavBar(props) {
         deleteCookie('email');
         deleteCookie('password')
         deleteCookie('token')
+        localStorage.removeItem("token")
         setLogin(false)
         console.log("deleted")
     }
@@ -23,9 +24,11 @@ function NavBar(props) {
                 </Link>
                 <div className='nav-buttons'>
                     <div>
-                        <Link to="/AddPickUpLine">
-                            <button>Add Line</button>
-                        </Link>
+                        {login ? (
+                            <Link to="/AddPickUpLine">
+                                <button>Add Line</button>
+                            </Link>
+                        ) : null}
                     </div>
                     <div>
                         <Link to="/">

@@ -7,9 +7,11 @@ function AddLines() {
     const [category, setcategory] = useState('')
     const navigate = useNavigate()
 
+    const createdBy = localStorage.getItem("id")
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('http://localhost:4000/addPickUpLine', { pickupline, category })
+        axios.post('http://localhost:4000/addPickUpLine', { createdBy, pickupline, category })
             .then((res) => {
                 console.log(res)
                 navigate('/')

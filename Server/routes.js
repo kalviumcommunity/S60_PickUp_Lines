@@ -18,24 +18,43 @@ app.get("/lines", (req, res) => {
 });
 
 const dataValidate = Joi.object({
+  createdBy: Joi.string().required(),
   pickupline: Joi.string().required(),
   category: Joi.string().required()
 })
 
 app.post("/addPickUpLine", (req, res) => {
+
   const { error } = dataValidate.validate(req.body)
   if (error) {
     console.log(error)
-    res.send(error)
-  } else {
-    data.create({ pickupline: req.body.pickupline, category: req.body.category })
-      .then((result) => (
-        res.status(201).send(result)
-      ))
-      .catch((err) => {
-        res.status(400).send(err)
-      })
+    return res.send(error)
   }
+
+  SignUpData.findOne({ _id: req.body.createdBy })
+    .then((user) => {
+      data.create({ createdBy: user.name, pickupline: req.body.pickupline, category: req.body.category })
+        .then((data) => {
+          res.send(data)
+        })
+        .catch((err) => {
+          res.send(err)
+        })
+    })
+    .catch((err) => {
+      console.log(err)
+      res.send(err)
+    })
+
+  // data.create(req.body)
+  //   .then((result) => (
+  //     res.status(201).send(result)
+  //   ))
+  //   .catch((err) => {
+  //     res.status(400).send(err)
+  //   })
+  // res.send(req.body.createdBy)
+
 });
 
 app.get("/update/:id", (req, res) => {
@@ -155,7 +174,7 @@ app.post("/login", (req, res) => {
 
         if (plainText === user.password) {
           const token = generateToken(user._id)
-          res.send({ shouldLogin: true, Message: "Logged in Successfully", token: token })
+          res.send({ shouldLogin: true, Message: "Logged in Successfully", token: token, id: user._id })
         }
         else {
           res.send({ shouldLogin: false, Message: "Invalid Password" })

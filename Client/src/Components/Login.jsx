@@ -16,9 +16,8 @@ function Login(props) {
             .then((res) => {
                 console.log(res)
                 if (res.data.shouldLogin) {
-                    document.cookie = `email=${email}; expires= Thu, 30 May 2999 12:00:00 UTC`;
-                    document.cookie = `password=${password}; expires=Thu, 30 May 2999 12:00:00 UTC`;
                     document.cookie = `token=${res.data.token}; expires=Thu, 30 May 2999 12:00:00 UTC`
+                    localStorage.setItem("id", res.data.id)
                     alert(res.data.Message)
                     setLogin(res.data.shouldLogin)
                     navigate('/')
@@ -59,7 +58,7 @@ function Login(props) {
                         Signup here!
                     </Link>
                 </span>
-                <input type="submit" />
+                <input type="submit" value="Login" />
 
             </form>
         </div>

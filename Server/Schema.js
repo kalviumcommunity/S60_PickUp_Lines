@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const PickupLines = new mongoose.Schema({
-    name: String,
+    createdBy: String,
     pickupline: String,
     category: String,
 })

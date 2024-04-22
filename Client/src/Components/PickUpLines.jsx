@@ -34,6 +34,9 @@ function PickUpLines(props) {
                 {data && data.map((data) => {
                     return (
                         <div className='data-container' key={data._id}>
+                            <div>
+                                {data.createdBy}
+                            </div>
                             {data.pickupline}
                             <div className='category' >
                                 <p>Category: {data.category}</p>
