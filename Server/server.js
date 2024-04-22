@@ -1,7 +1,7 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const route = require('./routes')
-const { data, loginData } = require('./Schema')
+const { data, SignUpData } = require('./Schema')
 
 require("dotenv").config()
 const app = express()

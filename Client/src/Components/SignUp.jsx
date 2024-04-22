@@ -12,10 +12,10 @@ function SignUp() {
     const handleSubmit = (e) => {
         e.preventDefault()
         console.log(e)
-        axios.post('http://localhost:5000/signUp', { name, email, password })
+        axios.post('http://localhost:4000/signUp', { name, email, password })
             .then((data) => {
                 console.log(data)
-                // navigate('/login')
+                navigate('/login')
             })
             .catch((err) => {
                 console.log(err.response)
@@ -27,7 +27,7 @@ function SignUp() {
             <form className='form-container' action="" onSubmit={handleSubmit} >
                 <label htmlFor="name">Name:</label>
                 <input
-
+                    placeholder='Enter Your Name'
                     type="text"
                     onChange={(e) => {
                         setName(e.target.value)
@@ -36,6 +36,7 @@ function SignUp() {
                 />
                 <label htmlFor="email">Email:</label>
                 <input
+                    placeholder='Enter Your Email'
                     type="email"
                     onChange={(e) => {
                         setEmail(e.target.value)
@@ -44,6 +45,7 @@ function SignUp() {
                 />
                 <label htmlFor="password">Password:</label>
                 <input
+                    placeholder='Create a Password'
                     type="password"
                     onChange={(e) => {
                         setPassword(e.target.value)

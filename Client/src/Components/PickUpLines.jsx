@@ -3,7 +3,7 @@ import '../App.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 
-function PickUpLines() {
+function PickUpLines(props) {
     const [data, setData] = useState()
 
     useEffect(() => {
@@ -39,10 +39,14 @@ function PickUpLines() {
                                 <p>Category: {data.category}</p>
                             </div>
                             <div>
-                                <Link to={`/updateLine/${data._id}`}>
-                                    <button>Update</button>
-                                </Link>
-                                <button onClick={() => { handleDelete(data._id) }}>Delete</button>
+                                {props.login && (
+                                    <>
+                                        <Link to={`/updateLine/${data._id}`}>
+                                            <button>Update</button>
+                                        </Link>
+                                        <button onClick={() => { handleDelete(data._id) }}>Delete</button>
+                                    </>
+                                )}
                             </div>
                         </div>
                     )
