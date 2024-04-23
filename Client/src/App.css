@@ -1,13 +1,20 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@1,300..700&display=swap'); */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@1,300..700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300..700;1,300..700&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 * {
   margin: 0px;
   padding: 0px;
 }
 
 body {
-  background-color: black;
+  background-color: #76533d;
   color: white;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Poppins", sans-serif;
   text-align: center;
+  padding: 0px;
+  margin: 0px;
 }
 
 button {
@@ -20,7 +27,11 @@ button {
   display: flex;
   color: black;
   justify-content: space-between;
-  padding: 1vh;
+  align-items: center;
+  padding: 2vh;
+  width: 70%;
+  margin: 3vh auto;
+  border-radius: 3vh;
 }
 
 .heading {
@@ -41,13 +52,6 @@ button {
 
 .container {
   margin-top: 10vh;
-}
-
-.data-container {
-  width: 50%;
-  margin: 2vh auto;
-  padding: 5vh;
-  background-color: #a16204;
 }
 
 .category {
@@ -84,4 +88,52 @@ form>input,
 label,
 button {
   margin-top: 1.5vh;
+}
+
+
+.data-container {
+  /* background-color: white; */
+  color: black;
+  padding: 2vh;
+  width: 50%;
+  margin: 2vh auto;
+  border-radius: 4vh 1vh;
+  background-color: #bf8a5a;
+  /* background-blend-mode: difference; */
+  /* z-index: -1; */
+  border: 2px solid #1d0e01;
+
+}
+
+.box-1 {
+  display: flex;
+  justify-content: space-between;
+  padding: 2vh 0vh;
+  font-weight: 400;
+  border-bottom: 1px solid black;
+}
+
+/* margin: 2vh auto; */
+.box-2 {
+  margin: 1.7vh auto;
+  word-break: break-all;
+  text-align: left;
+  font-weight: 600;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.box-3 {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.box-3 button {
+  padding: 0.8vh;
+  outline: none;
+  border: none;
+  background-color: black;
+  color: white;
+  cursor: pointer;
 }

@@ -25,6 +25,10 @@ function AddLines() {
         <div className='form-container'>
             <form action="" onSubmit={handleSubmit}>
                 <label htmlFor="PickupLine">PickUp Line:</label>
+                <textarea name="" id="" cols="50" rows="4" placeholder='Add PickUp Line' onChange={(e) => {
+                    setLine(e.target.value)
+                }}
+                ></textarea>
                 <input
                     type="text"
                     required

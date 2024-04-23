@@ -58,13 +58,15 @@ function PickUpLines(props) {
                 {filteredData && filteredData.length > 0 ? (
                     filteredData.map((data) => (
                         <div className='data-container' key={data._id}>
-                            <div>{data.createdBy}</div>
-                            {data.pickupline}
-                            <div className='category'>
-                                <p>Category: {data.category}</p>
+                            <div className='box-1'>
+                                <p><b>Created By: </b>{data.createdBy}</p>
+                                <p><b>Category:</b> {data.category}</p>
                             </div>
-                            <div>
-                                {login && (
+                            <div className='box-2'>
+                                <p>" {data.pickupline} "</p>
+                            </div>
+                            <div className='box-3'>
+                                {(
                                     <>
                                         <Link to={`/updateLine/${data._id}`}>
                                             <button>Update</button>
