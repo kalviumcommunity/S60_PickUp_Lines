@@ -17,6 +17,16 @@ app.get("/lines", (req, res) => {
     })
 });
 
+app.get('/users', (req, res) => {
+  SignUpData.find()
+    .then((data) => {
+      res.send(data)
+    })
+    .catch((err) => {
+      res.send(err)
+    })
+})
+
 const dataValidate = Joi.object({
   createdBy: Joi.string().required(),
   pickupline: Joi.string().required(),

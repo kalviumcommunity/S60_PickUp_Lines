@@ -5,23 +5,47 @@ import { Link } from 'react-router-dom'
 
 function PickUpLines(props) {
     const [data, setData] = useState()
+    const [filteredData, setFilteredData] = useState();
+
+    const { login, filteredName } = props
 
     useEffect(() => {
         axios.get('http://localhost:4000/lines')
             .then((res) => {
                 console.log(res.data)
                 setData(res.data)
+                setFilteredData(res.data)
             })
             .catch((err) => {
                 console.log(err)
             })
     }, [])
 
+
+    useEffect(() => {
+        handleFilteredName()
+    }, [filteredName])
+
+    const handleFilteredName = () => {
+        console.log(filteredName)
+
+        if (filteredName === "all") {
+            setFilteredData(data);
+        }
+        else {
+            const newData = data.filter((user) => {
+                return user.createdBy === filteredName
+            })
+            setFilteredData(newData)
+        }
+
+    }
+
     const handleDelete = (id) => {
         axios.delete('http://localhost:4000/deleteData/' + id)
             .then((res) => {
                 console.log(res)
-                setData(data.filter((user) => user._id !== id));
+                setFilteredData(filteredData.filter((user) => user._id !== id));
             })
             .catch((err) => {
                 console.log(err)
@@ -31,18 +55,16 @@ function PickUpLines(props) {
     return (
         <div>
             <div className='container'>
-                {data && data.map((data) => {
-                    return (
+                {filteredData && filteredData.length > 0 ? (
+                    filteredData.map((data) => (
                         <div className='data-container' key={data._id}>
-                            <div>
-                                {data.createdBy}
-                            </div>
+                            <div>{data.createdBy}</div>
                             {data.pickupline}
-                            <div className='category' >
+                            <div className='category'>
                                 <p>Category: {data.category}</p>
                             </div>
                             <div>
-                                {props.login && (
+                                {login && (
                                     <>
                                         <Link to={`/updateLine/${data._id}`}>
                                             <button>Update</button>
@@ -52,8 +74,12 @@ function PickUpLines(props) {
                                 )}
                             </div>
                         </div>
-                    )
-                })}
+                    ))
+                ) : (
+                    <div>
+                        No pickup lines created by this user.
+                    </div>
+                )}
             </div>
         </div >
 
