@@ -1,19 +1,36 @@
 import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 function NavBar(props) {
-    const { login, setLogin } = props
+    const { login, setLogin, setFilteredName } = props
+
+    const [selectedName, setSelectedName] = useState()
 
     const deleteCookie = (name) => {
         document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
     }
 
+    useEffect(() => {
+        axios.get('http://localhost:4000/users')
+            .then((data) => {
+                console.log(data.data)
+                setSelectedName(data.data)
+            })
+            .catch((err) => {
+                console.log(err)
+            })
+    }, [])
+
     const handleClick = () => {
-        deleteCookie('email');
-        deleteCookie('password')
         deleteCookie('token')
-        localStorage.removeItem("token")
+        localStorage.removeItem("id")
         setLogin(false)
-        console.log("deleted")
+    }
+
+    const handleFilter = (e) => {
+        console.log(e.target.value)
+        setFilteredName(e.target.value)
     }
 
     return (
@@ -29,6 +46,16 @@ function NavBar(props) {
                                 <button>Add Line</button>
                             </Link>
                         ) : null}
+                    </div>
+                    <div>
+                        <select name="filter" id="" onChange={handleFilter} >
+                            <option value="all">All</option>
+                            {selectedName && selectedName.map((user) => {
+                                return (
+                                    <option key={user._id} value={user.name}>{user.name}</option>
+                                )
+                            })}
+                        </select>
                     </div>
                     <div>
                         <Link to="/">
