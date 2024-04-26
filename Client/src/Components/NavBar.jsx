@@ -40,16 +40,16 @@ function NavBar(props) {
                     <h2>PickUpLines</h2>
                 </Link>
                 <div className='nav-buttons'>
-                    <div>
+                    <Link to="/AddPickUpLine">
                         {login ? (
-                            <Link to="/AddPickUpLine">
-                                <button>Add Line</button>
-                            </Link>
+                            <div className='radio'>
+                                <p>Add Line</p>
+                            </div>
                         ) : null}
-                    </div>
-                    <div>
+                    </Link>
+                    <div className='radio'>
                         <select name="filter" id="" onChange={handleFilter} >
-                            <option value="all">All</option>
+                            <option value="all">Everyone</option>
                             {selectedName && selectedName.map((user) => {
                                 return (
                                     <option key={user._id} value={user.name}>{user.name}</option>
@@ -57,25 +57,26 @@ function NavBar(props) {
                             })}
                         </select>
                     </div>
-                    <div>
-                        <Link to="/">
-                            <button>About</button>
-                        </Link>
-                    </div>
+                    <Link to="/about">
+                        <div className='radio'>
+                            <p>About</p>
+                        </div>
+                    </Link>
                     {login ?
                         (
-                            <div>
-                                <button onClick={handleClick}>Logout</button>
+                            <div className='radio' onClick={handleClick}>
+                                <p>Logout</p>
                             </div>
                         ) :
                         (
-                            <div>
-                                <Link to='/login'>
-                                    <button>Login</button>
-                                </Link>
-                            </div>
+                            <Link to='/login'>
+                                <div className='radio'>
+                                    <p>Login</p>
+                                </div>
+                            </Link>
                         )
                     }
+                    <div></div>
                 </div>
             </nav>
         </div>

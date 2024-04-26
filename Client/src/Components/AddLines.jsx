@@ -22,33 +22,27 @@ function AddLines() {
     }
 
     return (
-        <div className='form-container'>
+        <div className='adding-container form-container'>
             <form action="" onSubmit={handleSubmit}>
+                <h3>Add a PickUp Line</h3>
+                <hr />
                 <label htmlFor="PickupLine">PickUp Line:</label>
-                <textarea name="" id="" cols="50" rows="4" placeholder='Add PickUp Line' onChange={(e) => {
+                <textarea name="pickupline" cols="50" rows="4" placeholder='Add a PickUp Line' onChange={(e) => {
                     setLine(e.target.value)
                 }}
                 ></textarea>
-                <input
-                    type="text"
-                    required
-                    value={pickupline}
-                    placeholder='Add PickUp Line'
-                    onChange={(e) => {
-                        setLine(e.target.value)
-                    }}
-                />
                 <label htmlFor="Category:">Category:</label>
                 <input
                     type="text"
-                    placeholder='Category'
+                    placeholder='Funny, Cheesy, Romantic, Cute, Flirty.......'
                     required
                     value={category}
                     onChange={(e) => {
                         setcategory(e.target.value)
                     }}
+
                 />
-                <input type="submit" value="Create" />
+                <input className='submit-btn' type="submit" value="Create" />
             </form>
         </div>
     )

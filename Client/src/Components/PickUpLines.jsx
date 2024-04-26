@@ -8,6 +8,7 @@ function PickUpLines(props) {
     const [filteredData, setFilteredData] = useState();
 
     const { login, filteredName } = props
+    console.log(login)
 
     useEffect(() => {
         axios.get('http://localhost:4000/lines')
@@ -66,7 +67,7 @@ function PickUpLines(props) {
                                 <p>" {data.pickupline} "</p>
                             </div>
                             <div className='box-3'>
-                                {(
+                                {login && (
                                     <>
                                         <Link to={`/updateLine/${data._id}`}>
                                             <button>Update</button>

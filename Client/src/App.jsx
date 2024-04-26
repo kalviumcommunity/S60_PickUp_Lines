@@ -9,6 +9,7 @@ import Login from './Components/Login';
 import { useState, useEffect } from 'react';
 import SignUp from './Components/SignUp';
 import Cookies from 'js-cookie';
+import About from './Components/About';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
         <Route path='/updateLine/:id' element={<UpdateLines />} />
         <Route path='login' element={<Login login={login} setLogin={setLogin} />} />
         <Route path='signUp' element={<SignUp />} />
+        <Route path='/about' element={<About />} />
       </Routes>
     </div>
   );

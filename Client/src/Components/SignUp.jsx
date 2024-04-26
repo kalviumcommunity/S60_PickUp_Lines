@@ -23,8 +23,10 @@ function SignUp() {
     }
 
     return (
-        <div>
-            <form className='form-container' action="" onSubmit={handleSubmit} >
+        <div className='signup-container form-container'>
+            <form action="" onSubmit={handleSubmit} >
+                <h3>SignUp</h3>
+                <hr />
                 <label htmlFor="name">Name:</label>
                 <input
                     placeholder='Enter Your Name'
@@ -52,7 +54,7 @@ function SignUp() {
                     }}
                     value={password}
                 />
-                <input type="submit" />
+                <input className='submit-btn' type="submit" />
             </form>
         </div>
     )
