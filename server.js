@@ -25,12 +25,12 @@ mongoose.connect(URI)
     })
     .catch((error) => {
         console.log(error)
-})
+    })
 
-app.get('/ping', (request,response) => {
-    
+app.get('/ping', (request, response) => {
+
     const isConnected = mongoose.connection.readyState === 1;
-    
+
     // Send response with database connection status
     response.json({
         database: isConnected ? 'connected' : 'disconnected',
@@ -38,7 +38,7 @@ app.get('/ping', (request,response) => {
 
 });
 
-app.use("/",route)
+app.use("/", route)
 // app.get("/Lines", (request, response) => {
 //     response.status(200).send("Route is working successfully");
 // });
