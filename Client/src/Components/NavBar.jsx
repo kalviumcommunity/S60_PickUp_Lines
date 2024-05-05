@@ -4,7 +4,6 @@ import axios from 'axios'
 
 function NavBar(props) {
     const { login, setLogin, setFilteredName } = props
-
     const [selectedName, setSelectedName] = useState()
 
     const deleteCookie = (name) => {
